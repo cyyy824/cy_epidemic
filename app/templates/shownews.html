@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block page_content %}
+<div style="padding: 10px 10px 10px;">
+    <h1>{{ title }}</h1>
+    <div> {{ body | safe }} </div>
+</div>   
+{% endblock %}

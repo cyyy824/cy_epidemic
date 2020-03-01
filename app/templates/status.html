@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+{% extends "base.html" %}
+{% block styles %}
+{{ super() }}
+<link id="bsdp-css" href="{{ url_for('static',filename='css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+{% block page_content %}
+
+<div id="search"  style="margin-top: 20px; width:98%">
+    <div class="col-md-5 form-inline" id="sanbox-container">
+	<form action="" method="get">
+	<input id="datepicker" class="form-control" name="sdate" data-date-format="mm/dd/yyyy">
+	<input type="submit" class="btn btn-primary" value="搜索" />
+	</form>
+
+    </div>
+
+</div>
+<div id="dvlist">
+    <table class="table">
+	<thead>
+	<tr>
+	    <th>姓名</th>
+	    <th>部门</th>
+	    <th>健康状况</th>
+	    <th>到岗情况</th>
+	    <th>聚集情况</th>
+	    <th>其他</th>
+	    <th>填报时间</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for epid in epids %}
+	<tr>
+	    <td>{{ epid.name }}</td>
+	    <td>{{ epid.department.dname }}</td>
+	    <td>{{ epid.health }}</td>
+	    <td>{{ epid.goout }}</td>
+	    <td>{{ epid.gather }}</td>
+	    <td>{{ epid.other }}</td>
+	    <td>{{ epid.created }}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+    </table>
+    </div>
+    
+    <button type="button" class="btn btn-primary" onclick="location.href='{{ url_for('main.add_status') }}'">新  增</button>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ url_for('static',filename='js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/locales/bootstrap-datepicker.zh-CN.min.js') }}"></script>
+    <script type="text/javascript">
+    $("#datepicker").datepicker({
+	format: 'yyyy-mm-dd',
+	autoclose: true, //选择后自动关闭
+	language:'zh-CN'
+    });
+
+    </script>
+{% endblock %}

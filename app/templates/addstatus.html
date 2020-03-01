@@ -1,0 +1,9 @@
+﻿<!DOCTYPE html>
+{% extends "base.html" %}
+{% block page_content %}
+<div style="padding: 10px 100px 10px;">
+    {% import "bootstrap/wtf.html" as wtf %}
+    {{ wtf.quick_form(form) }}
+</div>
+{% endblock %}
+

@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+{% extends "base.html" %}
+{% block page_content %}
+<div id="dvlist">
+<div>
+    <table class="table">
+	<tr>
+	    <th>标题</th>
+	    <th>创建时间</th>
+	</tr>
+	{% for new in news %}
+	<tr>
+	    <td><a href="{{ url_for('main.show_news',newsid=new.id) }}">{{ new.title }}</a></td>
+	    <td>{{ new.created }}</td>
+	</tr>
+	{% endfor %}
+    </table>
+</div>
+<div>
+    <button type="button" onclick="location.href='{{ url_for('main.add_news') }}'" >新增</button>
+</div>
+</div>
+{% endblock %}
